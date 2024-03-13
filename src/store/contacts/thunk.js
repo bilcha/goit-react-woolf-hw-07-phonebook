@@ -5,16 +5,38 @@ import {
   getContactsAPI,
 } from 'api/contactAPI';
 
-export const getContactsThunk = createAsyncThunk('contacts/fetchAll', () =>
-  getContactsAPI()
+export const getContactsThunk = createAsyncThunk(
+  'contacts/fetchAll',
+  (_, thunkAPI) => {
+    try {
+      const response = getContactsAPI();
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );
 
 export const addContactThunk = createAsyncThunk(
   'contacts/addContact',
-  contact => addContactsAPI(contact)
+  (contact, thunkAPI) => {
+    try {
+      const response = addContactsAPI(contact);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );
 
 export const deleteContactThunk = createAsyncThunk(
   'contacts/deleteContact',
-  id => deleteContactsAPI(id)
+  (id, thunkAPI) => {
+    try {
+      const response = deleteContactsAPI(id);
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
 );
