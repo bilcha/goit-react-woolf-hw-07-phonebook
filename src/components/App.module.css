@@ -1,0 +1,12 @@
+.container {
+  color: #010101;
+  padding: 20px;
+}
+
+.errorText {
+  color: #ffa600;
+}
+
+.loadingText {
+  color: #604cf6;
+}

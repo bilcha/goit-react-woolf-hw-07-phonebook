@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
-import { addContact } from 'store/contacts/slice';
-
 import styles from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'store/selectors';
+import { selectContacts } from 'store/selectors';
+import { addContactThunk } from 'store/contacts/thunk';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -26,7 +25,7 @@ const ContactForm = () => {
     ) {
       alert(`${newData.name} is already in contacts.`);
     } else {
-      dispatch(addContact(newData));
+      dispatch(addContactThunk(newData));
     }
   }
   function handleChange({ target: { name, value } }) {

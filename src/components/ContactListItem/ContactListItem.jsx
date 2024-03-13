@@ -1,4 +1,4 @@
-import { deleteContact } from 'store/contacts/slice';
+import { deleteContactThunk } from 'store/contacts/thunk';
 import styles from './ContactListItem.module.css';
 import { useDispatch } from 'react-redux';
 
@@ -6,7 +6,7 @@ export const ContactListItem = ({ id, name, number }) => {
   const disptch = useDispatch();
 
   function deleteContactHandler(id) {
-    disptch(deleteContact(id));
+    disptch(deleteContactThunk(id));
   }
   return (
     <li>
